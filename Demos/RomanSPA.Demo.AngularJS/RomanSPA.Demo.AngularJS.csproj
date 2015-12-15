@@ -56,13 +56,38 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Glimpse.Ado, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Glimpse.AspNet, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Glimpse.AspNet.1.8.0\lib\net45\Glimpse.AspNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Glimpse.Core, Version=1.8.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Glimpse.1.8.6\lib\net45\Glimpse.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Glimpse.EF6, Version=1.6.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Glimpse.EF6.1.6.5\lib\net45\Glimpse.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Glimpse.Mvc5, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Glimpse, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.Glimpse.1.0.2\lib\net35\Newtonsoft.Json.Glimpse.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -123,6 +148,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BreezeWebApiConfig.cs" />
+    <Compile Include="GlimpseSecurityPolicy.cs" />
+    <Compile Include="Migrations\201512142215276_InitialCreate.cs" />
+    <Compile Include="Migrations\201512142215276_InitialCreate.Designer.cs">
+      <DependentUpon>201512142215276_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BlogListFactory.cs" />
     <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -132,21 +163,22 @@
     <Compile Include="Models\BlogPost.cs">
       <DependentUpon>RomanDemo.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RomanDemo.Context.cs">
+    <None Include="Models\RomanDemo.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RomanDemo.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RomanDemo.cs">
+    </None>
+    <None Include="Models\RomanDemo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RomanDemo.tt</DependentUpon>
-    </Compile>
+    </None>
     <Compile Include="Models\RomanDemo.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RomanDemo.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\RomanDemoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -164,10 +196,10 @@
     <Content Include="Content\romanspa.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <EntityDeploy Include="Models\RomanDemo.edmx">
+    <None Include="Models\RomanDemo.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>RomanDemo.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    </None>
     <Content Include="Models\RomanDemo.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RomanDemo.edmx</DependentUpon>
@@ -509,6 +541,11 @@
       <Project>{18d1a175-5274-43fb-854f-9a396cc52733}</Project>
       <Name>RomanSPA.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201512142215276_InitialCreate.resx">
+      <DependentUpon>201512142215276_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

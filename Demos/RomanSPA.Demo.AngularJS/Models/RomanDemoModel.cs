@@ -18,7 +18,7 @@ namespace RomanSPA.Demo.AngularJS.Models
         public RomanSPAStarterKitEntities()
             : base("name=RomanSPAStarterKitEntities")
         {
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<RomanSPAStarterKitEntities, Migrations.Configuration>());
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<RomanSPAStarterKitEntities, Migrations.Configuration>(true));
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

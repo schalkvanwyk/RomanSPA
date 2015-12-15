@@ -110,7 +110,7 @@
   <ItemGroup>
     <Compile Include="Controllers\RomanController.cs" />
     <Compile Include="Controllers\RouteApiController.cs" />
-    <Compile Include="HybridActionInvoker.cs" />
+    <None Include="HybridActionInvoker.cs" />
     <Compile Include="Models\IModelFactory.cs" />
     <Compile Include="Models\JsRouteModel.cs" />
     <Compile Include="MVCHijacks\HttpContextBaseExtensions.cs" />
